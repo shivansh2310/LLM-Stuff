@@ -1,0 +1,266 @@
+Code Llama: Open Foundation Models for Code
+Baptiste Rozière†, Jonas Gehring†, Fabian Gloeckle†,∗, Sten Sootla†, Itai Gat, Xiaoqing Ellen
+Tan, Yossi Adi, Jingyu Liu, Tal Remez, Jérémy Rapin, Artyom Kozhevnikov, Ivan Evtimov,
+Joanna Bitton, Manish Bhatt, Cristian Canton Ferrer, Aaron Grattafiori, Wenhan Xiong,
+Alexandre Défossez, Jade Copet, Faisal Azhar, Hugo Touvron, Louis Martin, Nicolas Usunier,
+Thomas Scialom, Gabriel Synnaeve†
+Meta AI
+Abstract
+We release Code Llama , a family of large language models for code based on Llama 2
+providing state-of-the-art performance among open models, infilling capabilities, support
+for large input contexts, and zero-shot instruction following ability for programming tasks.
+We provide multiple flavors to cover a wide range of applications: foundation models
+(Code Llama ), Python specializations ( Code Llama - Python ), and instruction-following
+models ( Code Llama - Instruct ) with 7B, 13B and 34B parameters each. All models
+are trained on sequences of 16k tokens and show improvements on inputs with up to 100k
+tokens. 7B and 13B Code Llama andCode Llama - Instruct variants support infilling
+based on surrounding content. Code Llama reaches state-of-the-art performance among
+open models on several code benchmarks, with scores of up to 53% and 55% on HumanEval
+and MBPP, respectively. Notably, Code Llama - Python 7B outperforms Llama 2 70B
+on HumanEval and MBPP, and all our models outperform every other publicly available
+model on MultiPL-E. We release Code Llama under a permissive license that allows for
+both research and commercial use.1
+1 Introduction
+Large language models (LLMs) power a rapidly increasing number of applications, having reached a proficiency
+in natural language that allows them to be commanded and prompted to perform a variety of tasks (OpenAI,
+2023; Touvron et al., 2023b). By utilizing large, in-domain datasets, their efficacy can be greatly improved
+for applications that require a combination of both natural and domain-specific language and understanding
+of specialized terminology. By training on domain-specific datasets, they have proved effective more broadly
+on applications that require advanced natural language understanding. A prominent use-case is the formal
+interaction with computer systems, such as program synthesis from natural language specifications, code
+completion, debugging, and generating documentation (for a survey, see Xu & Zhu, 2022, also see Section 5).
+In this work, we present Code Llama , a family of LLMs for code generation and infilling derived from
+Llama 2 (Touvron et al., 2023b) and released under the same custom permissive license. We provide inference
+code for both completion and infilling models in the accompanying repository.1Our approach is based on
+gradually specializing and increasing the capabilities of Llama 2 models by applying a cascade of training
+and fine-tuning steps (Figure 2):
+•Code-training from foundation models. While most LLMs for code generation such as AlphaCode
+(Li et al., 2022), InCoder (Fried et al., 2023) or StarCoder (Li et al., 2023) are trained on code only,
+Codex (Chen et al., 2021) was fine-tuned from a general language model. We also start from a foundation
+model ( Llama 2 , Touvron et al., 2023b) pretrained on general-purpose text and code data. Our comparison
+(Section 3.4.1) shows that initializing our model with Llama 2 outperforms the same architecture trained
+on code only for a given budget.
+1https://github.com/facebookresearch/codellama
+†: Core contributors ∗: Meta AI, CERMICS École des Ponts ParisTech
+1Prompt: In Bash, how do I list all text files in the current directory (excluding subdirectories) that have been modified in the
+last month
+Response: You can use the ‘find‘ command in Bash to list all text files in the current directory (excluding subdirectories) that
+have been modified in the last month. The command would be:
+find . -maxdepth 1 -type f -mtime -30 -name "*.txt"
+Here’s a breakdown of the command:
+* ‘.‘ specifies the current directory.
+* ‘-maxdepth 1‘ tells ‘find‘ to only search the current directory and not any subdirectories.
+* ‘-type f‘ tells ‘find‘ to only search for files (not directories or other types of files).
+* ‘-mtime -30‘ tells ‘find‘ to only search for files that have been modified in the last 30 days.
+* ‘-name "*.txt"‘ tells ‘find‘ to only search for files with the ‘.txt‘ extension.
+Note that the ‘-mtime‘ option uses the number of days since the file was last modified, so ‘-mtime -30‘ means "modified in the
+last 30 days". If you want to search for files modified in the last month, you can use the ‘-mtime -30‘ option.
+Figure 1: Example of response of Code Llama - Instruct (34B) when queried for a specific shell command.
+•Infilling. Autoregressive training and fine-tuning of LLMs is suitable for prompt completion, but does
+not provide the capability to fill a missing portion of text while taking the full surrounding context into
+account. Our code-training for 7B and 13B Code Llama models features a multitask objective (Fried
+et al., 2023) consisting of both autoregressive and causal infilling prediction, enabling applications such as
+real-time completion in source code editors or docstring generation. Similarly to Bavarian et al. (2022);
+Li et al. (2023), our ablation study shows that infilling capabilities come at low cost in code generation
+performance for a given training compute budget (Section 3.2).
+•Long input contexts. Unlocking repository-level reasoning for completion or synthesis – as opposed
+to function-level or file-level – requires prompting the model with much longer context than the 4,096
+tokens supported by Llama 2 . We propose an additional fine-tuning stage that extends the maximum
+context length from 4,096 tokens to 100,000 tokens by modifying the parameters of the RoPE positional
+embeddings (Su et al., 2021) used in Llama 2 . Our experiments show Code Llama operating on very
+large contexts with a moderate impact on performances on standard coding benchmarks (Section 3.3).
+•Instruction fine-tuning. For end-users, the utility of LLMs is significantly improved by instruction
+fine-tuning (Ouyang et al., 2022; Wei et al., 2022; OpenAI, 2023; Touvron et al., 2023b), which also helps
+preventing unsafe, toxic or biased generations. Code Llama - Instruct variants are further fine-tuned
+on a mix of proprietary instruction data for improved safety and helpfulness, and a new machine-generated
+self-instruct dataset created by prompting Llama 2 for coding problems and Code Llama to generate
+associated unit tests and solutions. Our results show that Code Llama - Instruct significantly improves
+performance on various truthfulness, toxicity and bias benchmarks at moderate cost in terms of code
+generation performance (Section 4).
+Different combinations of these approaches lead to a family of code-specialized Llama 2 models with three
+main variants that we release in three sizes (7B, 13B and 34B parameters):
+•Code Llama : a foundational model for code generation tasks,
+•Code Llama - Python : a version specialized for Python,
+•Code Llama - Instruct : a version fine-tuned with human instructions and self-instruct code synthesis
+data.
+An example of using Code Llama - Instruct is given in Figure 1. It show-cases that the model interprets
+natural language to determine suitable options for a command-line program and provides an explanation of the
+solution. We provide further qualitative examples in Appendix K. We perform exhaustive evaluations of our
+models on major code generation benchmarks: HumanEval (Chen et al., 2021), MBPP (Austin et al., 2021),
+and APPS (Hendrycks et al., 2021), as well as a multilingual version of HumanEval (MultiPL-E, Cassano
+et al., 2022), where our best models establish a new state of the art amongst open-source LLMs. The technical
+details of our training and fine-tuning procedures are provided in Section 2, followed by in-depth experiments
+and ablation studies, details of the safety/helpfulness evaluations and a discussion of related work.
+2Code trainingInfilling code training      .     Instruction Fine-tuning Python code trainingLong context Fine-tuningLong context fine-tuningCᴏᴅᴇ Lʟᴀᴍᴀ - Iɴsᴛʀᴜᴄᴛ (7B ⁶, 13B ⁶, 34B)Cᴏᴅᴇ Lʟᴀᴍᴀ (7B ⁶, 13B ⁶, 34B)Cᴏᴅᴇ Lʟᴀᴍᴀ - Pʏᴛʜᴏɴ(7B, 13B, 34B)Lʟᴀᴍᴀ 2Foundation models(7B, 13B, 34B)100B
+<latexit sha1_base64="xxjQ0qU69VzePnVfp3QwO6CZats=">AAAB/HicbVDLSsNAFJ3UV42vaJduBovgqiRS1GXRjcsK9gFtKJPppB06mYSZGyWU+ituXCji1g9x5984abPQ1gMDh3Pu4d45QSK4Btf9tkpr6xubW+Vte2d3b//AOTxq6zhVlLVoLGLVDYhmgkvWAg6CdRPFSBQI1gkmN7nfeWBK81jeQ5YwPyIjyUNOCRhp4FTsvuKjscmFQJSKH7VtD5yqW3PnwKvEK0gVFWgOnK/+MKZpxCRQQbTueW4C/pQo4FSwmd1PNUsInZAR6xkqScS0P50fP8OnRhniMFbmScBz9XdiSiKtsygwkxGBsV72cvE/r5dCeOVPuUxSYJIuFoWpwBDjvAk85IpREJkhhCpubsV0TBShYPrKS/CWv7xK2uc176JWv6tXG9dFHWV0jE7QGfLQJWqgW9RELURRhp7RK3qznqwX6936WIyWrCJTQX9gff4A8lSUUw==</latexit> 500B20B20B5BFigure 2: The Code Llama specialization pipeline . The different stages of fine-tuning annotated with
+the number of tokens seen during training. Infilling-capable models are marked with the ⇄symbol.
+2Code Llama : Specializing Llama 2for code
+2.1 The Code Llama models family
+Code Llama. TheCode Llama models constitute foundation models for code generation. They come
+in three model sizes: 7B, 13B and 34B parameters. The 7B and 13B models are trained using an infilling
+objective (Section 2.3), and are appropriate to be used in an IDE to complete code in the middle of a file, for
+example. The 34B model was trained without the infilling objective. All Code Llama models are intialized
+withLlama 2 model weights and trained on 500B tokens from a code-heavy dataset (see Section 2.2 for
+more details). They are all fine-tuned to handle long contexts as detailed in Section 2.4.
+Code Llama - Python. TheCode Llama - Python models are specialized for Python code generation
+and also come in sizes of 7B, 13B, and 34B parameters. They are designed to study the performance of
+models tailored to a single programming language, compared to general-purpose code generation models.
+Initialized from Llama 2 models and trained on 500B tokens from the Code Llama dataset, Code Llama -
+Python models are further specialized on 100B tokens using a Python-heavy dataset (Section 2.2). All
+Code Llama - Python models are trained without infilling and subsequently fine-tuned to handle long
+contexts (Section 2.4).
+Code Llama - Instruct. TheCode Llama - Instruct models are based on Code Llama and fine-tuned
+with an additional approx. 5B tokens to better follow human instructions. More details on Code Llama -
+Instruct can be found in Section 2.5.
+2.2 Dataset
+We train Code Llama on 500B tokens during the initial phase, starting from the 7B, 13B, and 34B versions
+ofLlama 2 . As shown in Table 1, Code Llama is trained predominantly on a near-deduplicated dataset of
+publicly available code. We also source 8% of our samples data from natural language datasets related to
+code. This dataset contains many discussions about code and code snippets included in natural language
+questions or answers. To help the model retain natural language understanding skills, we also sample a small
+proportion of our batches from a natural language dataset. Data is tokenized via byte pair encoding (BPE,
+Sennrich et al. (2016)), employing the same tokenizer as LlamaandLlama 2 . Preliminary experiments
+suggested that adding batches sampled from our natural language dataset improves the performance of our
+models on MBPP.
+2.3 Infilling
+Code infilling is the task of predicting the missing part of a program given a surrounding context. Applications
+include code completion at the cursor’s position in code IDEs, type inference and generation of in-code
+documentation (e.g., docstrings).
+We train infilling models following the concept of causal masking (Aghajanyan et al., 2022; Fried et al.,
+2023), where parts of a training sequence are moved to the end, and the reordered sequence is predicted
+autoregressively. We train the general-purpose 7B and 13B models with an infilling objective, following the
+3recommendations of Bavarian et al. (2022). More precisely, we split training documents at the character
+level into a prefix, a middle part and a suffix with the splitting locations sampled independently from a
+uniform distribution over the document length. We apply this transformation with a probability of 0.9 and
+to documents that are not cut across multiple model contexts only. We randomly format half of the splits in
+theprefix-suffix-middle (PSM) format and the other half in the compatible suffix-prefix-middle (SPM) format
+described in Bavarian et al. (2022, App. D). We extend Llama 2 ’s tokenizer with four special tokens that
+mark the beginning of the prefix, the middle part or the suffix, and the end of the infilling span. To limit the
+distribution shift between autoregressive and infilling training, we suppress the implicit leading space that
+SentencePiece tokenizers add upon encoding the middle part and the suffix (Kudo & Richardson, 2018). In
+SPM format, we concatenate the prefix and the middle part before encoding to tokens. Note that our model
+doesn’t encounter split subtokens in the SPM format while it does in the PSM format.
+Results on the effect of infilling training on downstream generation tasks and the performance of our infilling
+models on infilling benchmarks are reported in Section 3.2.
+2.4 Long context fine-tuning
+Effective handling of long sequences is a major topic of research in transformer-based language model-
+ing (Vaswani et al., 2017). The fundamental modeling challenges are extrapolation, i.e., operating on sequence
+lengths beyond those seen at training time, and the quadratic complexity of attention passes which favors
+training on short-to-medium length inputs.
+ForCode Llama , we propose a dedicated long context fine-tuning (LCFT) stage in which models are
+presented with sequences of 16,384 tokens, up from the 4,096 tokens used for Llama 2 and our initial code
+training stages. By limiting the training time spent on processing long sequences to a fine-tuning stage, we
+gain long-range capabilities without significantly increasing the cost of training our models. Our strategy is
+similar to the recently proposed fine-tuning by position interpolation (Chen et al., 2023b), and we confirm
+the importance of modifying the rotation frequencies of the rotary position embedding used in the Llama 2
+foundation models (Su et al., 2021). However, instead of downscaling frequencies linearly as Chen et al.
+(2023b), we change the base period from which they are derived. Specifically, with rotary embeddings, the
+query and key vectors xnat position nare subject to a linear transformation Rd
+Θ,nxn, where Rd
+Θ,nis a block
+diagonal matrix with entries of the form
+/parenleftbig
+Rd
+Θ,n/parenrightbig
+i=/parenleftbiggcosnθi−sinnθi
+sinnθicosnθi/parenrightbigg
+,
+andddenotes the embedding dimension. Rotation frequencies are computed as θi=θ−2i/d, and we increase
+the base period θfrom 10,000 to 1,000,000 for fine-tuning. This increase allows for processing much larger
+sequences and reduces bias towards short-distance attention (see Appendix F.1 for further discussion). Our
+experiments confirm that Code Llama models are not only effective within the increased sequence length
+used during fine-tuning, but further show extrapolation capabilities and exhibit stable behavior on very long
+sequences of up to 100,000 tokens (Section 3.3).
+2.5 Instruction fine-tuning
+Our instruction fine-tuned models Code Llama - Instruct are based on Code Llama and trained to
+answer questions appropriately. They are trained on three different types of data.
+Proprietary dataset. We use the instruction tuning dataset collected for Llama 2 and described in
+detail by Touvron et al. (2023b). Specifically, we use the version referred to in their paper as “RLHF
+V5”, collected trough several stages of reinforcement learning from human feedback and human feedback
+annotation (see their Section 3 for more details). It combines thousands of Supervised Fine-Tuning and
+millions of Rejection Sampling examples. Each example consists of a multi-turn dialogue between a user
+and anassistant . For Rejection Sampling, the output was selected among several generations using a reward
+model. The final dataset contains both Helpfulness and Safety data. This enables Code Llama to inherit
+Llama 2 ’s instruction following and safety properties.
+4Dataset Sampling prop. Epochs Disk size
+Code Llama (500B tokens)
+Code 85% 2.03 859 GB
+Natural language related to code 8% 1.39 78 GB
+Natural language 7% 0.01 3.5TB
+Code Llama - Python (additional 100B tokens)
+Python 75% 3.69 79GB
+Code 10% 0.05 859 GB
+Natural language related to code 10% 0.35 78 GB
+Natural language 5% 0.00 3.5TB
+Table 1:Training dataset of Code Llama and Code Llama - Python. We train Code Llama on
+500B additional tokens and Code Llama - Python further on 100B tokens.
+Self-instruct. Our proprietary dataset contains few examples of code-related tasks. Collecting supervised
+data from human annotators or training from human feedback (Ouyang et al., 2022) is expensive for coding
+tasks as it requires input from professional developers. Instead of human feedback, we use execution feedback
+to select data to train our instruct model. We construct the self-instruction dataset following the recipe
+below, resulting in ∼14,000 question-tests-solution triplets:
+1. Generate 62,000 interview-style programming questions by prompting (Figure 9) Llama 2 70B.
+2. De-duplicate the set of questions by removing exact duplicates, resulting in ∼52,000 questions.
+3. For each of these questions:
+(a) Generate unit tests by prompting Code Llama 7B (Figure 10)
+(b) Generate ten Python solutions by prompting Code Llama 7B (Figure 11)
+(c)Run the unit tests on the ten solutions. Add the first solution that passes the tests (along with
+its corresponding question and tests) to the self-instruct dataset.
+We use Code Llama 7B to generate the tests and Python solutions, as we found it more efficient than
+generating fewer solutions per question with the 34B model for the same compute budget.
+Rehearsal. In order to prevent the model from regressing on general coding and language understanding
+capabilities, Code Llama - Instruct is also trained with a small proportion of data from the code dataset
+(6%) and our natural language dataset (2%).
+2.6 Training details
+Optimization. Our optimizer is AdamW (Loshchilov & Hutter, 2019) with β1andβ2values of 0.9 and
+0.95. We use a cosine schedule with 1000warm-up steps, and set the final learning rate to be 1/30th of the
+peak learning rate. We use a batch size of 4M tokens which are presented as sequences of 4,096 tokens each.
+Despite the standard practice of using lower learning rates in fine-tuning stages than in pre-training stages,
+we obtained best results when retaining the original learning rate of the Llama 2 base model. We carry
+these findings to the 13B and 34B models, and set their learning rates to 3e−4and1.5e−4, respectively. For
+python fine-tuning, we set the initial learning rate to 1e−4instead. For Code Llama - Instruct , we train
+with a batch size of 524,288 tokens and on approx. 5B tokens in total.
+Long context fine-tuning. For long context fine-tuning (LCFT), we use a learning rate of 2e−5, a sequence
+length of 16,384, and reset RoPE frequencies with a base value of θ= 106. The batch size is set to 2M tokens
+for model sizes 7B and 13B and to 1M tokens for model size 34B, respectively. Training lasts for 10,000
+gradient steps by default. We observed instabilities in downstream performance for certain configurations,
+and hence set the number of gradient steps to 11,000 for the 34B models and to 3,000 for Code Llama 7B.
+5Model Size HumanEval MBPP
+pass@1 pass@10 pass@100 pass@1 pass@10 pass@100
+code-cushman-001 12B 33.5% - - 45.9% - -
+GPT-3.5 (ChatGPT) - 48.1% - - 52.2% - -
+GPT-4 - 67.0%- - - - -
+PaLM 540B 26.2% - - 36.8% - -
+PaLM-Coder 540B 35.9% - 88.4% 47.0% - -
+PaLM 2-S - 37.6% - 88.4% 50.0% - -
+StarCoder Base 15.5B 30.4% - - 49.0% - -
+StarCoder Python 15.5B 33.6% - - 52.7% - -
+StarCoder Prompted 15.5B 40.8% - - 49.5% - -
+Llama 27B 12.2% 25.2% 44.4% 20.8% 41.8% 65.5%
+13B 20.1% 34.8% 61.2% 27.6% 48.1% 69.5%
+34B 22.6% 47.0% 79.5% 33.8% 56.9% 77.6%
+70B 30.5% 59.4% 87.0% 45.4% 66.2% 83.1%
+Code Llama7B 33.5% 59.6% 85.9% 41.4% 66.7% 82.5%
+13B 36.0% 69.4% 89.8% 47.0% 71.7% 87.1%
+34B 48.8% 76.8% 93.0% 55.0% 76.2% 86.6%
+Code Llama - Instruct7B 34.8% 64.3% 88.1% 44.4% 65.4% 76.8%
+13B 42.7% 71.6% 91.6% 49.4% 71.2% 84.1%
+34B 41.5% 77.2% 93.5% 57.0% 74.6% 85.4%
+Unnatural Code Llama 34B62.2%85.2% 95.4%61.2%76.6% 86.7%
+Code Llama - Python7B 38.4% 70.3% 90.6% 47.6% 70.3% 84.8%
+13B 43.3% 77.4% 94.1% 49.0% 74.0% 87.6%
+34B 53.7% 82.8% 94.7% 56.2% 76.4% 88.2%
+Table 2:Code Llama pass@ scores on HumanEval and MBPP. The pass@1 scores of our models are
+computed with greedy decoding. The pass@10 and pass@100 scores are computed with nucleus sampling
+with p=0.95 and temperature 0.8 following our findings from Figure 6. Models are evaluated in zero-shot
+on Human Eval and 3-shot on MBPP. The instruct models are trained to be safe and aligned from the
+baseCode Llama models. Results for other models as provided by Li et al. (2023) (code-cushman-001,
+StarCoder), OpenAI (2023) (GPT-3.5, GPT-4), and Chowdhery et al. (2022); Anil et al. (2023) (PaLM).
+3 Results
+We report results on a variety of benchmarks. First, we evaluate our models on popular description-to-code
+generation benchmarks for Python: HumanEval (Chen et al., 2021), MBPP (Austin et al., 2021), and APPS
+(programming interviews and competitions, Hendrycks et al., 2021). Second, we evaluate our models on
+further programming languages using MultiPL-E (Cassano et al., 2022), namely on C++, Java, PHP, C#,
+TypeScript (TS), and Bash. We additionally report results on the GSM8K benchmark (Cobbe et al., 2021),
+which measures mathematical reasoning capabilities (Appendix C).
+Next, we perform an extensive ablat

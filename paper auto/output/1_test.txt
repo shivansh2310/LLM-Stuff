@@ -1,0 +1,248 @@
+Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+Contents  lists  available  at  SciVerse  ScienceDirect
+Renewable  and  Sustainable  Energy  Reviews
+j  ourna  l  h  o  mepage:  www.elsevier.com/locate/rser
+Financial  optimization  in  the  Turkish  electricity  market:  Markowitz’s
+mean-variance
+ approach
+Fazıl Gökgöz∗,  Mete  Emin  Atmaca1
+Ankara  University,  Faculty  of  Political  Sciences,  Department  of  Management,  Ankara,  Turkey
+a  r  t  i  c  l  e  i  n  f  o
+Article  history:
+Received
+ 24 May 2011
+Accepted
+ 24  June  2011
+Available online 24 October 2011
+JEL  classiﬁcation:
+C60C61C12C22G10G11L94N75Q41
+Keywords:
+Financial optimization
+Portfolio
+ optimization  in  electricity  markets
+Mean-variance
+ optimization
+Risk
+ management
+Turkish
+ electricity  market
+Turkeya  b  s  t  r  a  c  t
+Electricity  constitutes  the  input  into  many  products  that  produced  by  industry  and  used  by  people.  Hence,
+it can  be  considered  as  a  product  or  service  that  has  vital  importance  in  human  life  and  economy.  Since
+it has  such  special  properties  of  instantaneous  production  and  consumption  obligation  and  unfeasible
+storage, electricity  market  is  not  like  other  markets.  In  a  competitive  electricity  market,  generation  com-
+pany faces  price  risks  and  delivery  risks.  So  that  risk  management  is  an  important  part  of  a  generation
+company and  can  deeply  effect  companies’  proﬁtability.  This  paper  focuses  on  electricity  generation  asset
+allocation between  bilateral  contracts,  such  as  forward  contracts,  and  daily  spot  market,  considering  con-
+straints of  generating  units  and  spot  price  risks.  The  problem  is  to  ﬁnd  the  optimal  portfolio  based  on
+known electricity  generation  total  costs,  bilateral  contract  prices,  it  employed  Turkish  historical  balanced
+market hourly  system  marginal  and  day-ahead  hourly  market  prices  between  of  2006  and  2011.  There
+are limited  studies  about  portfolio  optimization  in  electricity  markets  in  literature  and  this  paper  should
+be considered  frontier  study  taking  spot  market’s  hourly  prices  separately  as  risky  assets.  Markowitz
+mean-variance optimization which is claimed to be the beginning of modern portfolio theory in ﬁnancial
+sector is  used  to  demonstrate  this  approach.  Mean-variance  optimization  has  been  successfully  applied
+to all  cases  that  modeled  for  electricity  market.  Some  suggestions  for  future  work  are  also  listed  in  this
+paper.
+© 2011 Elsevier Ltd. All rights reserved.
+Contents
+1. Introduction  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .358
+2. Current  status  of  Turkish  electricity  market  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .358
+3. Portfolio  optimization  theory  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+3.1. Modern portfolio theory . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+3.2. Portfolio  selection  and  determination  of  utility  function  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+4. Data  and  methodology  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .360
+4.1. Determination  of  risky  and  risk-free  assets  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .360
+4.2. Construction  of  three  base  models  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .362
+4.2.1. Standard  mean-variance  optimization  model  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .362
+4.2.2. Mean-variance optimization model with upper investment constraints . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .363
+4.2.3. Mean-variance  optimization  with  one  risk-free  asset  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .363
+5. Results  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .364
+5.1. Efﬁcient  frontier  and  optimum  portfolio  for  hydraulic  power  plants  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .364
+5.2. Efﬁcient frontier and optimum portfolio for lignite ﬁred thermal power plants . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .365
+∗Corresponding author  at:  Ankara  University,  Faculty  of  Political  Sciences,  Department  of  Management,  06600  Cebeci-Ankara,  Turkey.
+E-mail addresses: fgokgoz@politics.ankara.edu.tr (F. Gökgöz), meteemin.atmaca@euas.gov.tr (M.E. Atmaca).
+1Ankara  University,  Nuclear  Engineer  &  Project  Manager  at  EUAS ¸  (Electricity  Generation  Company  Inc.  of  Turkey),  Ankara,  Turkey.
+1364-0321/$ – see front matter ©  2011 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.rser.2011.06.018358 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+5.3.  Efﬁcient  frontier  and  optimum  portfolio  for  natural  gas  combined  cycle  power  plants  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .366
+5.4. Analysis  of  results  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .366
+6. Conclusions  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .367
+References .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .368
+1.  Introduction
+In  many  countries  today,  there  is  a  remarkable  tendency  for
+deregulation  and  restructuring  of  electric  power  industries.  Turkey
+is  one  of  these  countries  and  it  is  also  in  a  restructuring  period.  It  is
+aiming to  deregulate  all  electricity  industry  until  2015.  However,
+this  new  market  environment  brings  along  some  risks.  In  a  com-
+petitive  environment,  generation  companies’  main  objective  is  to
+maximize  their  proﬁt  and  minimize  the  associated  risks,  therefore
+clear  determination  of  the  risks  and  taking  necessary  steps  are  very
+important. It is essential to create a trading strategy with risk man-
+agement before bidding into spot markets (high proﬁt with volatile
+prices)  and  bilateral  contract  market  (moderate  proﬁt  with  stable
+prices).  At  this  point,  main  step  is  the  determination  of  portfolio
+weights and optimization of the portfolio with respect to investors’
+risk aversion.
+Various risk management techniques have been applied to elec-
+tricity  markets.  Risk  management  can  be  divided  into  two  main
+sections; risk control and risk assessment. In the study of Liu and
+Wu [1], hedging and portfolio optimization have been deﬁned as
+risk control techniques. On the other hand risk measurement and
+asset  valuation  are  described  as  risk  assessment  techniques.  Hedg-
+ing  is  necessary  to  offset  risk  of  position  (generally  in  spot  markets)
+and  to  reach  this  goal  investors  must  buy  some  other  derivatives
+like  forward contracts, future contracts, options and swaps, etc.
+[2,3] .  In  electricity  markets  hedging  the  risk  of  spot  price  with  for-
+ward  contract  and  futures  contract  have  been  investigated  [4,5] .
+Forward  contracts, purchased by a consumer are commitment by
+the  suppliers  to  provide  a  speciﬁed  amount  of  electrical  energy  at
+a  future  time,  are  particularly  useful  for  coordinating  supply  and
+demand  side  operations  decisions  under  spot  pricing  [4].  A  future
+contract  obligates each party to buy or sell a speciﬁed amount
+of  energy  at  a  speciﬁed  price.  But,  buyers  and  sellers  of  future
+contracts  deal  with  an  exchange,  not  with  each  other  [6].  Hedg-
+ing  techniques using futures contracts in electricity market appear
+to  have  lower  standard  deviation  or  risk  [5].  Options,  Swaps  and
+special  electricity  contracts  (callable  forward  contract,  puttable
+forward  contract)  are  also  determined  as  other  tools  for  hedging
+strategies.
+Portfolio  optimization,  listed  among  risk  control  techniques,
+refers  to  optimally  allocation  of  energy  trading  tools  with  the  aim
+of  maximizing beneﬁts while minimizing the corresponding risk.
+Except  Monte Carlo Method in reference study of Vehviläinen and
+Keppo,  there  are  two  types  of  methods  can  be  used  to  solve  portfo-
+lio  optimization  problems:  Decision  analysis  and  modern  portfolio
+theory  [6,7] .  Decision  analysis  is  the  determination  of  all  possible
+events  with  its  consequences  and  probabilities  and  the  constitu-
+tion  of  decision  tree  with  respect  to  these  data  and  the  evaluation
+of  tree [8]. Modern portfolio theory (MPT), which is the subject of
+this  paper, is the other technique that can be used for portfolio
+optimization  [1,2,6–12] .  Mean-variance  optimization  is  the  essen-
+tial  part  of  this  approach.  Only  few  studies  have  been  done  by  using
+MPT  in  electricity  markets.  It  is  very  popular  in  ﬁnancial  literature
+but  it  is  brand  new  approach  for  electricity  markets.  Risk  assess-
+ment  techniques  for  portfolio  optimization  are  not  scope  of  this
+study  so  it  is  not  necessary  to  give  additional  information  on  them.
+Section  2  introduces  the  background  of  the  electricity  market
+with  different  trading  regimes  and  pricing  system  which  includes
+trading  environment.  Section  2  also  introduces  current  status  ofTurkish
+ electricity  market.  Section  3  describes  the  fundamental
+theory  and  methodology  (especially  mean-variance  optimization)
+to  portfolio  optimization  which  can  be  applied  to  electricity  mar-
+kets.  Section  4  explains  data  and  methodology  and  includes  the
+application  of  mean  variance  to  electricity  market  environment.
+Section 5  demonstrates  results  of  study  in  graphically  and  table
+representation  forms.  Finally,  Section  6  provides  conclusions.
+2. Current  status  of  Turkish  electricity  market
+Electricity  markets  in  the  world  generally  offer  two  types  of
+market  structure:  spot  market  and  physical  market.  In  addition  to
+these,  there are derivative markets too. Spot markets include bal-
+ance  and/or  day  ahead  spot  markets  while  physical  markets  include
+bilateral  and/or  physical  forward  contracts.  There  are  also  deriva-
+tive  markets  (for  ﬁnancial  instrumentation  of  electricity  with,
+futures,  option,  swap  and  special  other  derivatives)  in  some  of  the
+electricity  trading  regimes.
+To  keep  interconnected  system  in  a  stable  condition,  it  is  nec-
+essary  to  keep  frequency  value  of  network  in  a  bound  around  a
+speciﬁc  value.2Instantaneous  load  changes  must  be  compensated
+by  load  rejection/acceptation  of  generation  units.  Excess  power  in
+networks  causes  increase  in  frequency  while  opposite  case  causes
+decrease  in frequency. Balance markets are founded to respond this
+need in a short time (generally less than 15 min) so that they are
+deﬁned as real time markets. As to day-ahead market all energy
+traded  approximately 24 h (in Turkish electricity market between
+12  and  36  h  before  real  consumption  time)  before  real  consumption
+time.  The  common  scenario  among  these  markets  is  that  they  all
+involve  a centralized auction mechanism, by Independent System
+Operators  (ISOs),  Regional  Transmission  Operators  (RTO)  or  any
+such  organizations,  to  determine  which  generation  units  should  be
+deployed  and how much energy should be produced to meet the
+demand  by selected unit [1]. Depends on the countries spot mar-
+ket  mechanism  preferences,  trading  intervals  to  submit  bids  in  spot
+market  can  be  different.  For  instance,  in  NEM  of  Australia,  the  time
+interval  for  electricity  trading  is  deﬁned  as  30  min  but  all  counter-
+parts  can  give  their  bids  for  every  5  min.  In  Greece,  STA  has  single
+and  separate  market  for  each  hour.  In  England  and  New  Zealand,
+NETA  and  NZEM  have  48  half  hour  trading  periods  for  each  day.
+In  IMO of Ontario bids and/or offers are submitted for every 5 min.
+As  to  Elspot  in  Nordic  market,  market  participants  bid  for  purchase
+and  sale  of  power  contracts  1-h  duration  for  all  24  h  of  the  next
+day.  Turkish  electricity  market  has  been  operated  for  hourly  trading
+interval,  too.
+Three  types  of  pricing  mechanism  are  common  in  world’s  energy
+markets:  Uniform  marginal  pricing,  zonal  pricing  and  locational
+(or  nodal) pricing. In balance market, some other pricing system
+which  is  called  as  pay-as-bid  or  discriminatory  pricing  system  can
+also  be  seen  for  instance  Wales  and  England  market.  In  markets,
+where  uniform  marginal  pricing  were  adopted,  only  one  energy
+price  is  used  for  ex  post  settlement  for  each  trading  interval.
+Generation  companies  can  make  certain  of  their  revenues  by  sign-
+ing  bilateral  contracts  with  their  customers  at  ﬁxed  energy  prices.
+In  zonal pricing systems, there is a geographical point of view to
+2American  network  system  is  being  operated  at  60  Hz  frequency  and  110  V,  Euro-
+pean
+ and Turkish network systems are being operated at 50 Hz frequency and 220 V.F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368 359
+Fig. 1. European market model/multi environment advanced market model.
+market  structure  and  all  system  divided  sub  systems  with  respect
+to  pre-deﬁned  geographical  areas,  called  zones.  When  there  is  no
+congestion between zones, one uniform market clearing price is
+used  throughout  the  system.  Under  congestion  conditions  all  zones
+separated  each  other  and  produce  their  own  market  clearing  prices,
+called  zonal  prices.  These  pricing  systems  have  congestion  risks  for
+bilateral markets because of their uncertain and unpredictable pric-
+ing mechanisms. Zonal pricing is still used in Nordic (11 zones) and
+some  other  markets  [13].  Locational  marginal  pricing  is  the  deter-
+mination of  prices  in  each  location  or  node  of  power  system.  When
+there  is no congestion, one market clearing price is used in the sys-
+tem  (ignoring  transmission  loses)  same  as  zonal  pricing.  In  zonal
+and  locational  pricing  regimes,  except  contract  with  customers  at
+the  same location or zone, all contracts are risky [1]. Theoretical
+point  of  view,  methodology  for  each  pricing  system  is  the  same.
+In Turkey, deregulation and reconstruction processes are pro-
+ceeding.  Turkish  authorities  are  planning  to  reach  completely
+deregulated  market  environment  before  2015.  With  respect  to
+Turkey  Progress  Report  of  European  Union  2009,  the  thresh-
+old  for  eligible  consumers  was  further  reduced  to  480,000  kWh,
+equivalent  to  opening  50%  of  market  [14].  After  this  report  Turk-
+ish  Energy Market Regulator Authority published new threshold
+value  as  100,000  kWh  [15].  Turkey  is  adopting  European  Market
+Model  to  itself,  in  that  respect  Nordic  Electricity  Market  struc-
+ture  is  a  good  example  for  Turkey.  Turkish  electricity  market
+consists  of  two  main  market  environments  now:  balanced  mar-
+ket  for  balancing  load  imbalances  as  a  spot  market  and  bilateral
+contract  application.  Day-ahead  planning  is  in  service  to  pre-
+pare  market participants to day-ahead market. In near future (at
+the  end  of  2011)  day-ahead  market  will  be  available  for  energy
+traders.  In  Fig.  1  common  details  of  target  model  of  Turkey  can  be
+seen.
+3.
+ Portfolio  optimization  theory
+3.1. Modern  portfolio  theory
+In classical portfolio theory, it is thought that you can
+avoid  your investment risk by constructing your portfolio from
+different  industries’ shares, treasury bills with different maturities,
+and  different  foreign  currencies,  in  other  words  via  diversiﬁcation.In
+ modern portfolio theory, taking into consideration of relations
+(correlations, co-movement)  of  portfolio  assets  with  each  other  is
+very  important  and  diversiﬁcation  is  necessary  but  not  the  only
+solution  of  portfolio  risk  management.  Taking  these  co-movements
+of  securities  into  account  satisﬁes  an  ability  to  construct  a  port-
+folio  that  has  the  same  expected  return  and  less  risky  portfolio
+than  a  portfolio  constructed  by  ignoring  the  interactions  between
+securities  [1].
+It  is  impossible  for  investors  to  know  exactly  what  the  asset’s
+return  and  risk  will  be  tomorrow,  so  they  are  using  some  forecast-
+ing  tools to determine these values. The main problem by which
+investors  must  be  faced  is  to  ﬁguring  out  weight  percentages  of
+assets  being  in  the  portfolio.  This  problem  is  called  as  portfolio
+selection  problem. To ﬁnd a solution to this problem, Harry M.
+Markowitz  published  a  paper,  which  is  called  as  milestone  study
+for portfolio theory and fundamentals of modern portfolio theory,
+“Portfolio  Selection ”  in  1952  [3].  Markowitz,  in  his  famous  paper,
+argued  that  a  process  of  portfolio  selection  can  be  divided  into  two
+stages.  “The  ﬁrst  stage  starts  with  observation  and  experience  and  end
+with  beliefs  about  the  future  performances  of  available  securities.  The
+second  stage  starts  with  the  relevant  beliefs  about  future  performances
+and  ends with the choice of portfolio.” His paper is concerned about
+the  second  stage  [11].  His  body  of  work  on  portfolio  theory  resulted
+in  him  bein

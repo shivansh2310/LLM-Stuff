@@ -1,0 +1,903 @@
+Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+Contents  lists  available  at  SciVerse  ScienceDirect
+Renewable  and  Sustainable  Energy  Reviews
+j  ourna  l  h  o  mepage:  www.elsevier.com/locate/rser
+Financial  optimization  in  the  Turkish  electricity  market:  Markowitz’s
+mean-variance
+ approach
+Fazıl Gökgöz∗,  Mete  Emin  Atmaca1
+Ankara  University,  Faculty  of  Political  Sciences,  Department  of  Management,  Ankara,  Turkey
+a  r  t  i  c  l  e  i  n  f  o
+Article  history:
+Received
+ 24 May 2011
+Accepted
+ 24  June  2011
+Available online 24 October 2011
+JEL  classiﬁcation:
+C60C61C12C22G10G11L94N75Q41
+Keywords:
+Financial optimization
+Portfolio
+ optimization  in  electricity  markets
+Mean-variance
+ optimization
+Risk
+ management
+Turkish
+ electricity  market
+Turkeya  b  s  t  r  a  c  t
+Electricity  constitutes  the  input  into  many  products  that  produced  by  industry  and  used  by  people.  Hence,
+it can  be  considered  as  a  product  or  service  that  has  vital  importance  in  human  life  and  economy.  Since
+it has  such  special  properties  of  instantaneous  production  and  consumption  obligation  and  unfeasible
+storage, electricity  market  is  not  like  other  markets.  In  a  competitive  electricity  market,  generation  com-
+pany faces  price  risks  and  delivery  risks.  So  that  risk  management  is  an  important  part  of  a  generation
+company and  can  deeply  effect  companies’  proﬁtability.  This  paper  focuses  on  electricity  generation  asset
+allocation between  bilateral  contracts,  such  as  forward  contracts,  and  daily  spot  market,  considering  con-
+straints of  generating  units  and  spot  price  risks.  The  problem  is  to  ﬁnd  the  optimal  portfolio  based  on
+known electricity  generation  total  costs,  bilateral  contract  prices,  it  employed  Turkish  historical  balanced
+market hourly  system  marginal  and  day-ahead  hourly  market  prices  between  of  2006  and  2011.  There
+are limited  studies  about  portfolio  optimization  in  electricity  markets  in  literature  and  this  paper  should
+be considered  frontier  study  taking  spot  market’s  hourly  prices  separately  as  risky  assets.  Markowitz
+mean-variance optimization which is claimed to be the beginning of modern portfolio theory in ﬁnancial
+sector is  used  to  demonstrate  this  approach.  Mean-variance  optimization  has  been  successfully  applied
+to all  cases  that  modeled  for  electricity  market.  Some  suggestions  for  future  work  are  also  listed  in  this
+paper.
+© 2011 Elsevier Ltd. All rights reserved.
+Contents
+1. Introduction  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .358
+2. Current  status  of  Turkish  electricity  market  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .358
+3. Portfolio  optimization  theory  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+3.1. Modern portfolio theory . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+3.2. Portfolio  selection  and  determination  of  utility  function  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .359
+4. Data  and  methodology  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .360
+4.1. Determination  of  risky  and  risk-free  assets  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .360
+4.2. Construction  of  three  base  models  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .362
+4.2.1. Standard  mean-variance  optimization  model  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .362
+4.2.2. Mean-variance optimization model with upper investment constraints . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .363
+4.2.3. Mean-variance  optimization  with  one  risk-free  asset  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .363
+5. Results  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .364
+5.1. Efﬁcient  frontier  and  optimum  portfolio  for  hydraulic  power  plants  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .364
+5.2. Efﬁcient frontier and optimum portfolio for lignite ﬁred thermal power plants . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .365
+∗Corresponding author  at:  Ankara  University,  Faculty  of  Political  Sciences,  Department  of  Management,  06600  Cebeci-Ankara,  Turkey.
+E-mail addresses: fgokgoz@politics.ankara.edu.tr (F. Gökgöz), meteemin.atmaca@euas.gov.tr (M.E. Atmaca).
+1Ankara  University,  Nuclear  Engineer  &  Project  Manager  at  EUAS ¸  (Electricity  Generation  Company  Inc.  of  Turkey),  Ankara,  Turkey.
+1364-0321/$ – see front matter ©  2011 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.rser.2011.06.018358 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+5.3.  Efﬁcient  frontier  and  optimum  portfolio  for  natural  gas  combined  cycle  power  plants  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .366
+5.4. Analysis  of  results  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .366
+6. Conclusions  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .367
+References .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .368
+1.  Introduction
+In  many  countries  today,  there  is  a  remarkable  tendency  for
+deregulation  and  restructuring  of  electric  power  industries.  Turkey
+is  one  of  these  countries  and  it  is  also  in  a  restructuring  period.  It  is
+aiming to  deregulate  all  electricity  industry  until  2015.  However,
+this  new  market  environment  brings  along  some  risks.  In  a  com-
+petitive  environment,  generation  companies’  main  objective  is  to
+maximize  their  proﬁt  and  minimize  the  associated  risks,  therefore
+clear  determination  of  the  risks  and  taking  necessary  steps  are  very
+important. It is essential to create a trading strategy with risk man-
+agement before bidding into spot markets (high proﬁt with volatile
+prices)  and  bilateral  contract  market  (moderate  proﬁt  with  stable
+prices).  At  this  point,  main  step  is  the  determination  of  portfolio
+weights and optimization of the portfolio with respect to investors’
+risk aversion.
+Various risk management techniques have been applied to elec-
+tricity  markets.  Risk  management  can  be  divided  into  two  main
+sections; risk control and risk assessment. In the study of Liu and
+Wu [1], hedging and portfolio optimization have been deﬁned as
+risk control techniques. On the other hand risk measurement and
+asset  valuation  are  described  as  risk  assessment  techniques.  Hedg-
+ing  is  necessary  to  offset  risk  of  position  (generally  in  spot  markets)
+and  to  reach  this  goal  investors  must  buy  some  other  derivatives
+like  forward contracts, future contracts, options and swaps, etc.
+[2,3] .  In  electricity  markets  hedging  the  risk  of  spot  price  with  for-
+ward  contract  and  futures  contract  have  been  investigated  [4,5] .
+Forward  contracts, purchased by a consumer are commitment by
+the  suppliers  to  provide  a  speciﬁed  amount  of  electrical  energy  at
+a  future  time,  are  particularly  useful  for  coordinating  supply  and
+demand  side  operations  decisions  under  spot  pricing  [4].  A  future
+contract  obligates each party to buy or sell a speciﬁed amount
+of  energy  at  a  speciﬁed  price.  But,  buyers  and  sellers  of  future
+contracts  deal  with  an  exchange,  not  with  each  other  [6].  Hedg-
+ing  techniques using futures contracts in electricity market appear
+to  have  lower  standard  deviation  or  risk  [5].  Options,  Swaps  and
+special  electricity  contracts  (callable  forward  contract,  puttable
+forward  contract)  are  also  determined  as  other  tools  for  hedging
+strategies.
+Portfolio  optimization,  listed  among  risk  control  techniques,
+refers  to  optimally  allocation  of  energy  trading  tools  with  the  aim
+of  maximizing beneﬁts while minimizing the corresponding risk.
+Except  Monte Carlo Method in reference study of Vehviläinen and
+Keppo,  there  are  two  types  of  methods  can  be  used  to  solve  portfo-
+lio  optimization  problems:  Decision  analysis  and  modern  portfolio
+theory  [6,7] .  Decision  analysis  is  the  determination  of  all  possible
+events  with  its  consequences  and  probabilities  and  the  constitu-
+tion  of  decision  tree  with  respect  to  these  data  and  the  evaluation
+of  tree [8]. Modern portfolio theory (MPT), which is the subject of
+this  paper, is the other technique that can be used for portfolio
+optimization  [1,2,6–12] .  Mean-variance  optimization  is  the  essen-
+tial  part  of  this  approach.  Only  few  studies  have  been  done  by  using
+MPT  in  electricity  markets.  It  is  very  popular  in  ﬁnancial  literature
+but  it  is  brand  new  approach  for  electricity  markets.  Risk  assess-
+ment  techniques  for  portfolio  optimization  are  not  scope  of  this
+study  so  it  is  not  necessary  to  give  additional  information  on  them.
+Section  2  introduces  the  background  of  the  electricity  market
+with  different  trading  regimes  and  pricing  system  which  includes
+trading  environment.  Section  2  also  introduces  current  status  ofTurkish
+ electricity  market.  Section  3  describes  the  fundamental
+theory  and  methodology  (especially  mean-variance  optimization)
+to  portfolio  optimization  which  can  be  applied  to  electricity  mar-
+kets.  Section  4  explains  data  and  methodology  and  includes  the
+application  of  mean  variance  to  electricity  market  environment.
+Section 5  demonstrates  results  of  study  in  graphically  and  table
+representation  forms.  Finally,  Section  6  provides  conclusions.
+2. Current  status  of  Turkish  electricity  market
+Electricity  markets  in  the  world  generally  offer  two  types  of
+market  structure:  spot  market  and  physical  market.  In  addition  to
+these,  there are derivative markets too. Spot markets include bal-
+ance  and/or  day  ahead  spot  markets  while  physical  markets  include
+bilateral  and/or  physical  forward  contracts.  There  are  also  deriva-
+tive  markets  (for  ﬁnancial  instrumentation  of  electricity  with,
+futures,  option,  swap  and  special  other  derivatives)  in  some  of  the
+electricity  trading  regimes.
+To  keep  interconnected  system  in  a  stable  condition,  it  is  nec-
+essary  to  keep  frequency  value  of  network  in  a  bound  around  a
+speciﬁc  value.2Instantaneous  load  changes  must  be  compensated
+by  load  rejection/acceptation  of  generation  units.  Excess  power  in
+networks  causes  increase  in  frequency  while  opposite  case  causes
+decrease  in frequency. Balance markets are founded to respond this
+need in a short time (generally less than 15 min) so that they are
+deﬁned as real time markets. As to day-ahead market all energy
+traded  approximately 24 h (in Turkish electricity market between
+12  and  36  h  before  real  consumption  time)  before  real  consumption
+time.  The  common  scenario  among  these  markets  is  that  they  all
+involve  a centralized auction mechanism, by Independent System
+Operators  (ISOs),  Regional  Transmission  Operators  (RTO)  or  any
+such  organizations,  to  determine  which  generation  units  should  be
+deployed  and how much energy should be produced to meet the
+demand  by selected unit [1]. Depends on the countries spot mar-
+ket  mechanism  preferences,  trading  intervals  to  submit  bids  in  spot
+market  can  be  different.  For  instance,  in  NEM  of  Australia,  the  time
+interval  for  electricity  trading  is  deﬁned  as  30  min  but  all  counter-
+parts  can  give  their  bids  for  every  5  min.  In  Greece,  STA  has  single
+and  separate  market  for  each  hour.  In  England  and  New  Zealand,
+NETA  and  NZEM  have  48  half  hour  trading  periods  for  each  day.
+In  IMO of Ontario bids and/or offers are submitted for every 5 min.
+As  to  Elspot  in  Nordic  market,  market  participants  bid  for  purchase
+and  sale  of  power  contracts  1-h  duration  for  all  24  h  of  the  next
+day.  Turkish  electricity  market  has  been  operated  for  hourly  trading
+interval,  too.
+Three  types  of  pricing  mechanism  are  common  in  world’s  energy
+markets:  Uniform  marginal  pricing,  zonal  pricing  and  locational
+(or  nodal) pricing. In balance market, some other pricing system
+which  is  called  as  pay-as-bid  or  discriminatory  pricing  system  can
+also  be  seen  for  instance  Wales  and  England  market.  In  markets,
+where  uniform  marginal  pricing  were  adopted,  only  one  energy
+price  is  used  for  ex  post  settlement  for  each  trading  interval.
+Generation  companies  can  make  certain  of  their  revenues  by  sign-
+ing  bilateral  contracts  with  their  customers  at  ﬁxed  energy  prices.
+In  zonal pricing systems, there is a geographical point of view to
+2American  network  system  is  being  operated  at  60  Hz  frequency  and  110  V,  Euro-
+pean
+ and Turkish network systems are being operated at 50 Hz frequency and 220 V.F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368 359
+Fig. 1. European market model/multi environment advanced market model.
+market  structure  and  all  system  divided  sub  systems  with  respect
+to  pre-deﬁned  geographical  areas,  called  zones.  When  there  is  no
+congestion between zones, one uniform market clearing price is
+used  throughout  the  system.  Under  congestion  conditions  all  zones
+separated  each  other  and  produce  their  own  market  clearing  prices,
+called  zonal  prices.  These  pricing  systems  have  congestion  risks  for
+bilateral markets because of their uncertain and unpredictable pric-
+ing mechanisms. Zonal pricing is still used in Nordic (11 zones) and
+some  other  markets  [13].  Locational  marginal  pricing  is  the  deter-
+mination of  prices  in  each  location  or  node  of  power  system.  When
+there  is no congestion, one market clearing price is used in the sys-
+tem  (ignoring  transmission  loses)  same  as  zonal  pricing.  In  zonal
+and  locational  pricing  regimes,  except  contract  with  customers  at
+the  same location or zone, all contracts are risky [1]. Theoretical
+point  of  view,  methodology  for  each  pricing  system  is  the  same.
+In Turkey, deregulation and reconstruction processes are pro-
+ceeding.  Turkish  authorities  are  planning  to  reach  completely
+deregulated  market  environment  before  2015.  With  respect  to
+Turkey  Progress  Report  of  European  Union  2009,  the  thresh-
+old  for  eligible  consumers  was  further  reduced  to  480,000  kWh,
+equivalent  to  opening  50%  of  market  [14].  After  this  report  Turk-
+ish  Energy Market Regulator Authority published new threshold
+value  as  100,000  kWh  [15].  Turkey  is  adopting  European  Market
+Model  to  itself,  in  that  respect  Nordic  Electricity  Market  struc-
+ture  is  a  good  example  for  Turkey.  Turkish  electricity  market
+consists  of  two  main  market  environments  now:  balanced  mar-
+ket  for  balancing  load  imbalances  as  a  spot  market  and  bilateral
+contract  application.  Day-ahead  planning  is  in  service  to  pre-
+pare  market participants to day-ahead market. In near future (at
+the  end  of  2011)  day-ahead  market  will  be  available  for  energy
+traders.  In  Fig.  1  common  details  of  target  model  of  Turkey  can  be
+seen.
+3.
+ Portfolio  optimization  theory
+3.1. Modern  portfolio  theory
+In classical portfolio theory, it is thought that you can
+avoid  your investment risk by constructing your portfolio from
+different  industries’ shares, treasury bills with different maturities,
+and  different  foreign  currencies,  in  other  words  via  diversiﬁcation.In
+ modern portfolio theory, taking into consideration of relations
+(correlations, co-movement)  of  portfolio  assets  with  each  other  is
+very  important  and  diversiﬁcation  is  necessary  but  not  the  only
+solution  of  portfolio  risk  management.  Taking  these  co-movements
+of  securities  into  account  satisﬁes  an  ability  to  construct  a  port-
+folio  that  has  the  same  expected  return  and  less  risky  portfolio
+than  a  portfolio  constructed  by  ignoring  the  interactions  between
+securities  [1].
+It  is  impossible  for  investors  to  know  exactly  what  the  asset’s
+return  and  risk  will  be  tomorrow,  so  they  are  using  some  forecast-
+ing  tools to determine these values. The main problem by which
+investors  must  be  faced  is  to  ﬁguring  out  weight  percentages  of
+assets  being  in  the  portfolio.  This  problem  is  called  as  portfolio
+selection  problem. To ﬁnd a solution to this problem, Harry M.
+Markowitz  published  a  paper,  which  is  called  as  milestone  study
+for portfolio theory and fundamentals of modern portfolio theory,
+“Portfolio  Selection ”  in  1952  [3].  Markowitz,  in  his  famous  paper,
+argued  that  a  process  of  portfolio  selection  can  be  divided  into  two
+stages.  “The  ﬁrst  stage  starts  with  observation  and  experience  and  end
+with  beliefs  about  the  future  performances  of  available  securities.  The
+second  stage  starts  with  the  relevant  beliefs  about  future  performances
+and  ends with the choice of portfolio.” His paper is concerned about
+the  second  stage  [11].  His  body  of  work  on  portfolio  theory  resulted
+in  him  being  awarded  Nobel  prize  in  economics  in  1990.  He  shared
+this  prize  with  Merton  H.  Miller  and  William  F.  Sharpe  and  they
+were  awarded  jointly  for  their  pioneering  work  in  the  theory  of
+ﬁnancial  economics.  After  Markowitz’s  famous  paper,  theory  was
+ampliﬁed  by  Sharpe  in  1964  and  by  Linther  in  1965  [16,17] .  The
+addition  of a risk-free asset by Sharpe and Lintner in the mid 1960s
+led  to  the  capital  market  line  and  the  CAPM  [18].
+3.2.
+ Portfolio  selection  and  determination  of  utility  function
+Markowitz’s  portfolio  theory  is  based  on  a  mean-variance  opti-
+mization process that searches for efﬁcient portfolios. An efﬁcient
+portfolio  means  one  that  provides  minimum  risk  for  a  given  level  of
+return or maximum return for a given level of risk [19]. It must be
+done  another  basic  assumption  that  rational  risk-averse  investors
+select  their portfolios using only mean-variance criteria. The main
+assumptions  of the mean-variance analysis are based on the fol-
+lowing  issues  [20]:360 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368Expected Return (r)
+Risk ( )Oppo rtun ity Set
+Global Minimum
+Variance  Por/g414olioEﬃcient  Fron/g415er
+Fig.  2.  Efﬁcient  frontier  and  efﬁcient  portfolios.
+•All
+ investors  are  risk  averse  so  that  they  prefer  less  risk  to  more
+for  the  same  level  of  expected  return.
+•Investors  have  the  information  regarding  the  expected  returns,
+variances  and  covariances  of  all  assets.
+•Investors  need  only  to  know  the  expected  returns,  variances  and
+the  covariances of returns to determine optimal portfolios.
+•And  there  exist  no  transaction  costs  or  taxes  limitation.
+The  required inputs necessary for mean-variance optimization
+model are  the  expected  returns  for  each  asset,  the  variance  of  each
+asset,  and  the  covariances  between  assets.  If  the  asset’s  returns  obey
+a  normal  distribution,  then  the  entire  distribution  of  a  portfolio  can
+be  described  by  the  mean  and  variance  only  [21].  Markowitz  mean-
+variance  optimization  process  produces  an  efﬁcient  frontier  (Fig.  2)
+which  consists  of  efﬁcient  portfolios  sets  on  it.
+The  expected return for a particular portfolio, which includes
+“N” assets, can be expressed as:
+E(rp)  =N/summationdisplay
+i=1Xiri (1)
+while “N”  describes  number  of  assets  that  take  place  in  portfolio,
+“Xi”  denotes  the  proportion  (weight  percentage)  of  ith  asset  in  port-
+folio  and “ri”  denotes  expected  return  of  ith  asset.  The  variance  for
+a  particular can be expressed as:
+/ESC2
+p=N/summationdisplay
+i=1N/summationdisplay
+j=1XiXj/ESCij (2)
+“/ESCij”  is  the  covariance  between  the  returns  on  the  ith  asset  and  the
+jth  asset. The covariance /ESCijmeasures  how  many  the  returns  on
+two assets move together.
+The  basic  mean-variance  optimization  model  includes  the  min-
+imization of the portfolio’s variance under three fundamental
+constraints.  These  constraints  are  expected  return  of  portfolio
+must be equal to target return; the sum of the proportions of
+ﬁnancial  assets  that  are  being  in  portfolio  must  be  equal  to  “1”
+and  ﬁnally  non-negativity  condition  for  assets’  proportions.  Under
+above  determined  conditions  it  can  be  set  the  basic  equation  as:
+Min.
+ (/ESC2
+p)  =N/summationdisplay
+i=1N/summationdisplay
+j=1XiXj/ESCij (3)
+s.t.
+N/summationdisplay
+i=1Xiri=  re (4)
+N/summationdisplay
+i=1Xi=  1  (5)Xi≥ 0, ∀Xi∈  [i  =  1,  2,  .  .  .  ,  N]
+After  solution  of  this  problem  set  it  can  be  reached  the  efﬁcient
+portfolios and efﬁcient frontier as shown in Fig. 2 for N risky assets
+portfolio.
+The main  issue  for  the  basic  mean-variance  optimization  model
+is  the  determination  of  optimal  proportional  allocation  “Xi”  to  the
+ith ﬁnancial asset. After determination of efﬁcient portfolios and
+efﬁcient  frontier,  it  is  important  the  determination  of  investor’s
+utility  functions  that  represent  investor’s  risk  aversion  level.  It  is
+assumed  that  each  investor  can  assign  a  utility  score  to  compet-
+ing investment portfolios based on expected return and risk of
+those portfolios. Combining two, we can deﬁne the objective or
+utility  function  for  an  investor  in  terms  of  expected  return  E(r)  and
+variance  of  returns  /ESC2as  follows  [1,2,6,22,23] :
+U =  E(r)  −1
+2A/ESC2(6)
+where U  is  the  utility  value  and  “A”  is  an  index  of  investor’s  risk
+aversion. The factor of ½ is just a scaling convention. In ﬁnancial
+approximations,  A  =  3  is  taken  for  representation  of  average  risk
+aversion,  A  >  3  means  more  risk  aversion  and  A  <  3  means  less  risk
+aversion.  In  the  light  of  above  information,  now  it  can  be  found
+optimum portfolio for an investor that has level “A” risk aversion,
+after the solution of below equations set:
+U =  E(rp) −1
+2A/ESC2
+p (7)
+s.t.
+N/summationdisplay
+i=1Xi= 1 (5)
+Xi≥  0,  ∀Xi∈  [i  =  1,  2,  .  .  .  ,  N]
+where
+E(rp)  =N/summationdisplay
+i=1Xiri (1)
+/ESC2
+p=N/summationdisplay
+i=1N/summationdisplay
+j=1XiXj/ESCij (2)
+4. Data  and  methodology
+4.1.  Determination  of  risky  and  risk-free  assets
+To apply  mean-variance  optimization  to  electricity  market,  ﬁrst
+of  all it must be determined risky assets and to enlarge this appli-
+cation also we need a risk-free asset. In Turkish electricity market,
+we have system marginal prices and day-ahead market prices since
+August  2006.  By  knowing  electricity  generation  costs  with  respect
+to  their  types  (Hydraulic  Power  Plant,  Lignite  ﬁred  Thermal  Power
+Plant,  Natural Gas Combined Cycle Power Plant), we will use these
+data  to represent risky assets. Bilateral contract prices with ﬁxed
+values  (under  the  guarantee  of  clearing  authority)  will  be  used  to
+represent  risk-free  asset.  Turkish  electricity  market’s  daily  average
+spot  prices frequencies between August 2006 and April 2011 can be
+seen  in  Fig.  3.  We  assumed  that  price  frequency  has  a  normal  dis-
+tribution  around  mean.  In  calculations,  yearly  average  (US  Dollar
+selling)  currency prices have been used [24].
+Spot  market electricity prices and the amount of electricity
+consumptions  (demand  for  electricity)  have  volatile  values  but
+they  move together with high correlation. Both of these two
+index can  importantly  change  with  respect  to  different  hours  ofF.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368 361
+050100150200250300350Frequencies
+Price (USDce nt)
+Fig.  3.  System  marginal  prices  and  day-ahead  prices  frequency  distribution
+between
+ August  2006  and  April  2011.
+day,  weekdays,  weekend,  months,  seasons,  years,  and  also  change
+supply-demand  balance  and  system  congestions  but  each  of  them
+follows  a  characteristic  way.  The  most  well-known  characteristic
+is  hourly  demand  characteristics  of  consumers.  Starting  from  this
+point  that consumers have similar consumption characteristics in
+the  same  hours  of  a  day,  by  using  spot  prices  of  24  h  of  day,  24  risky
+assets  have been determined. Above mentioned assumptions have
+been taken to support this approach:
+Daily  load  curves  that  have  chosen  randomly  for  different  years,
+seasons,  months,  and  weekdays  can  be  seen  from  Fig.  4.  In  spite  of
+the  all differences, consumers have similar consumption proﬁles for
+ﬁve  different sample days. In such a way that load curves generally
+decreases  after  10  p.m.  and  increases  after  7  a.m.  The  amount  of
+electricity  consumption  is  low  for  the  ﬁrst  8  h  of  a  day.  In  all  curves
+it  can be seen two or three head/shoulder formation shapes. Except
+extreme  conditions  like  public  holidays,  religious  holidays,  very  hot
+and  cold  days,  network  congestions  and  trip  of  generation  units  etc.
+load  curves  proﬁle  does  not  change  so  much.  Statistical  point  of
+view,  correlation constants for these ﬁve days are shown in Table 1:
+As  can  be  seen  in  Table  1  that  load  curve  correlations  between
+these  days  are  very  high  in  positive  direction  and  have  average  0.96
+value.
+The  same  characteristic  structure  of  load  curve  that  is  placed  in
+Fig.  4  can  be  seen  in  hourly  spot  prices  as  well.  The  spot  prices  for
+electricity  are  generally  low  for  the  ﬁrst  8  h  of  the  day.  There  are
+dramatical  increase in prices after 7 a.m. while decrease in prices
+after  10  p.m.  like  the  amount  of  electricity  consumed  by  customers
+that  has  been  previously  shown  in  Fig.  4.
+In  our  case,  because  of  above  mentioned  reasons,  instead  of
+choosing  one  spot  price  to  represent  risky  asset  in  electricity  mar-
+ket,  it  has  been  chosen  24  h  of  day’s  district  spot  prices  to  represent
+24  risky  assets  in  electricity  spot  market.  For  analysis,  hourly
+1200 01400 01600 01800 0200 002200 02400 02600 02800 0300 00
+2321191715131197531Load(MW)
+Hour
+Fig.  4.  Daily  load  curve  belongs  to  different  weekdays  between  August  of  2006  and
+December
+ of 2009.system  marginal  prices  which  had  been  formed  between  August
+of  2006  and  December  of  2009  and  hourly  day-ahead  spot  prices
+which  had  been  formed  between  December  of  2009  and  April  of
+2011  are  used  as  data  sets.  This  time  interval  spreads  57  months
+and  includes  1713  prices’  data  for  every  hour  of  a  day.  That  means
+41,112  prices’  data  had  been  used  in  analysis.
+/vectorf1=⎡
+⎢⎢⎢⎢⎢⎣a1,1
+a1,2
+...
+...
+a
+1,1713⎤
+⎥⎥⎥⎥⎥⎦,/vectorf2=⎡
+⎢⎢⎢⎢⎢⎣a2,1
+a2,2
+...
+...
+a
+2,1713⎤
+⎥⎥⎥⎥⎥⎦,  .  .  .,/vectorf24=⎡
+⎢⎢⎢⎢⎢⎣a24,1
+a24,2
+...
+...
+a
+24,1713⎤
+⎥⎥⎥⎥⎥⎦(8)
+Price vectors  are  formed  as  seen  in  Eq.  (8).  Where/vectorfn[n  =  1,  2,  .  .  .,
+24]  represent  price  vector  for  each  hour  of  day  and  an,m(n  =  1,  2,
+.  . ., 24),  (m  =  1,  2,  .  .  .,  1713)  represent  hourly  system  marginal  and
+day-ahead  prices.
+In ﬁnancial  literature  rate  of  return  of  an  asset  can  be  determined
+as  the  percentage  change  of  investor’s  wealth  from  the  beginning
+to  the  end  of  a  term.  With  electricity  marketing  point  of  view  this
+approach  is not true; we cannot economically store electricity or
+hold like  other  securities  for  a  while  to  sell  later  and  this  product
+must  be  generated  and  consumed  instantly.  So  it  must  be  taken
+into  consideration  generation  cost  of  electricity.  So  Min  Liu  and
+Felix  Wu had determined rate of return for electricity spot market
+as;  “rate of return = (spot prices − generation  cost)/generation  cost”
+[25].  Depends  on  your  assumptions  this  generation  cost  param-
+eter  can  be  taken  as  dynamic  or  passive.  In  dynamic  approach
+C∗=/summationtextM
+k=1(a  +  bpk+  cpk2)  tωF
+k)  power  of  generation  unit  Pkand  ωF
+k
+fuel  prices  are  used  as  a  parameter  [24].  Besides  C*  =  Sk+  Dkpkequa-
+tion  can also be used with constant cost Sk,  variable  costs  Dkand
+power  of  unit  pkto  represent  cost  term  of  calculation.  In  passive
+approach  like  in  this  study  it  can  be  taken  into  consideration  real
+average  total electricity generation costs for a generation unit as a
+constant  term. So that all price vectors in Eq. (8) are transferred to
+the  rate  of  return  vectors  in  Eq.  (10)  by  applying  the  calculations  in
+Eq.  (9).
+rn,m=(an,m−  C∗)
+C∗,  (n  =  1,  2,  .  .  .  ,  24),  (m  =  1,  2,  .  .  .  ,  1713)  (9)
+/H6109r1=⎡
+⎢⎢⎢⎢⎢⎣r1,1
+r1,2
+...
+...
+r
+1,1713⎤
+⎥⎥⎥⎥⎥⎦, /H6109r2=⎡
+⎢⎢⎢⎢⎢⎣r2,1
+r2,2
+...
+...
+r
+2,1713⎤
+⎥⎥⎥⎥⎥⎦,  .  .  .  , /H6109r24=⎡
+⎢⎢⎢⎢⎢⎣r24,1
+r24,2
+...
+...
+r
+24,1713⎤
+⎥⎥⎥⎥⎥⎦(10)
+where C*represents  marginal  electricity  generation  costs  and  “*”
+index  on  it  represents  generation  type  (H:  Hydro  Power,  T:  Thermal
+Power  with  lignite  and  N:  Natural  Gas  Combined  Cycle  Table  2).  In
+this  study  EUAS ¸  ’s  real  average  electricity  generation  cost  values  has
+been  used  as  a  generation  cost  data  set.  rn,m(n  =  1,  2,  .  .  .,  24),  (m  =  1,
+2,  .  .  .,  1713)  represent  rate  of  returns  and/vectorrnis  rate  of  return  vector.
+After  determination  of  these  vectors,  the  average  rate  of  return  and
+variances  of  each  set  are  easily  calculated  by  using  Eqs.  (11)  and
+(12):
+¯rn=1
+1713/parenleftBigg1713/summationdisplay
+m=1rn,m/parenrightBigg
+(11)
+/ESCn=/radicaltp/radicalvertex/radicalvertex/radicalbt1
+17131713/summationdisplay
+m=1(rn,m−¯rn)2(12)362 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+Table
+ 1
+Correlation
+ matrix  for  ﬁve  independent  days.
+Dates  21.09.06  20.03.07  08.06.07  07.01.08  18.11.09
+21.09.06  1  0.9514011  0.9703129  0.9706092  0.9684779
+20.03.07
+ 1  0.9251289  0.9361949  0.9470435
+08.06.07 1 0.9605889
+ 0.9486646
+07.01.08 1  0.9853352
+18.11.09 1
+4.2.  Construction  of  three  base  models
+Before  developing  base  form  of  Markowitz  mean-variance  opti-
+mization  model,  constitution  of  Variance–Covariance  Matrix  is
+necessary.  By  using  Eq.  (13),  all  elements  of  Variance–Covariance
+Matrix  in  Eq.  (14)  are  determined  as  follows:
+/ESCxy=1
+17131713/summationdisplay
+m=1(rx,m−¯rx)(ry,m−¯ry)  (13)
+⎡
+⎢⎢⎣/ESC2
+1/ESC1,2·  ·  ·  /ESC1,24
+/ESC2,1/ESC2
+2
+......
+/ESC
+24,1 /ESC2
+24⎤
+⎥⎥⎦(14)
+These results  will  be  used  three  main  model  approach.
+4.2.1. Standard  mean-variance  optimization  model
+In this  case  electricity  generators  have  only  opportunity  to
+sell  their  generations  to  spot  electricity  markets.  That  means  it
+is  constructed  and  used  optimization  model  with  24  risky  selling
+alternatives.  It is called as standard mean-variance optimization
+approach  and the mathematical programming formulations are
+formed  as  follows:
+Min. (/ESC2
+p)  =24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (15)
+s.t.
+rp=24/summationdisplay
+n=1Xn¯rn=  re (16)
+24/summationdisplay
+n=1Xn=  1  (17)
+0
+ ≤  Xn≤  1,  [n  =  1,  2,  .  .  .  ,  24]
+In above  mentioned  equation  set  electricity  generators  can  sell,
+whatever  amount of electricity they want to sell, in every hour of
+day without  limitation.  Firstly  Eqs.  (15)–(17)  are  used  for  formation
+of  possible efﬁcient portfolio alternatives and drawing of efﬁcient
+frontier.  Then, in second step is here ﬁnding the optimal portfolio
+with  in  efﬁcient  portfolios  alternatives  with  respect  to  electricity
+ExpectedRate ofReturn(r)
+StandartDevia/g415  on (σ)Eﬃcient  Fron/g415er
+Global  minimum
+variance  por/g414olioIndiﬀerences  Curve
+Op/g415mum  por/g414olio
+Fig.  5.  Portfolio  optimization  results  for  risky  assets.
+generators’  risk  aversion  characteristic.  To  ﬁnd  the  optimal  portfo-
+lio,  utility function (U) as mentioned before in Eq. (7) is used and
+optimization  equation  set  is  formed  as  follows:
+Max XnU  =  E(rp)  −1
+2A/ESC2
+p (18)
+s.t.
+24/summationdisplay
+n=1Xn=  1  0  ≤  Xn≤  1,  ∀Xn∈  [n  =  1,  2,  .  .  .  ,  24]
+where
+E(rp)  =24/summationdisplay
+n=1Xn¯rn (19)
+/ESC2
+p=24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (20)
+To represent  average  risk-aversion  level,  “A”  is  taken  as  “3”
+[2,25] .  Some researchers in ﬁnancial literature has been tried to
+guess  the value of “A” for average risk aversion. In spite of there is
+no  strict  value  determined  for  “A”  it  is  accepted  has  a  value  between
+2  and  4  for  average  risk  aversion.  After  solution  of  above  determined
+equations  set it is reached optimal weight percentage of risky assets
+in  the  optimum  portfolio  for  an  electricity  generator  that  is  only
+taking  into  consideration  of  24  risky  alternatives  in  spot  market  to
+sell  electricity. To reach the minimum global variance portfolio it
+is  necessary the solution of Eq. (21). After solutions of all equations
+in  this  case  it  is  reached  result  graphic  as  shown  in  Fig.  5:
+lim
+A→∞/braceleftBig
+Max XnU  =  E(rP)  −1
+2A/ESC2
+p/bracerightBig
+(21)
+Table 2
+EUAS
+ average  electricity  generation  costs  according  to  generation  type  2010  [26].
+Type  of  power  plant  Generation  (kWh)  Industrial  cost  (cent/kWh)  Commercial  cost  (cent/kWh)
+Natural  gas  combined  cycle  20,107,683,691  10.15  10.31
+Lignite
+ ﬁred  thermal  power  26,429,805,243  7.61  8.50
+Hydraulic
+ power  plants  39,914,183,522  0.75  0.99
+Electricity  Generation  Co.  Inc.  (EUAS)  2010  real  average  electricity  generation  cost  values.  EUAS  is  a  state  owned  company  with  the  biggest  market  share  (approximately  %
+45 in  generation  and  %50  in  installed  capacity)  in  Turkish  electricity  market.
+Commercial cost includes industrial cost and all other costs like administrative expenses, marketing, operating and maintenance costs.F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368 363
+4.2.2.  Mean-variance  optimization  model  with  upper  investment
+constraints
+Unlike the standard Markowitz mean-variance approximation,
+in  this  model,  electricity  generators  cannot  sell  all  energy  in  one  of
+spot  market  hour  they  want.  Instead  of  this,  there  are  some  con-
+straints  for  electricity  generators  for  selling  energy.  This  model
+basically is  more  realistic  than  standard  model.  In  real  electric-
+ity  market  environment  generators  (strategies  can  be  change  with
+respect  to  type  of  generators;  hydraulic,  coal,  natural  gas,  nuclear,
+etc.)  generally  prefer  less  risky  and  stable  conditions.  Selling  all
+of  their  energy  to  spot  market  without  limitation  is  not  a  realistic
+case.  So  that  it  is  constructed  and  used  optimization  model  with  24
+risky  selling  alternatives  with  upper  constraints  for  selling  energy
+to  each  hours  and  equation  sets  are  formed  as  follows:
+Min.  (/ESC2
+p)  =24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (22)
+s.t.
+rp=24/summationdisplay
+n=1Xn¯rn=  re (23)
+24/summationdisplay
+n=1Xn=  1  (24)
+Xn≤  /DC2n,  [n  =  1,  2,  .  .  .  ,  24]  (25)
+0  ≤  Xn,  [n  =  1,  2,  .  .  .  ,  24]
+In  above  equation  sets  it  is  used  same  standard  equations  with
+standard model (Eqs. (15)–(17) ) we  talked  about  in  case  a  but  there
+are  limitations  Xn≤  /DC2nfor  selling  electricity  in  spot  market  hours  in
+this  model.  These  limitations  can  be  gotten  different  values  also  but
+in  our  model  all  of  them  are  taken  same  and  equal  to  /DC2n.  After  the
+solution  of  Eqs.  (22)–(25)  efﬁcient  portfolios  and  efﬁcient  frontier
+are  obtained  like  in  previous  case.  Second  step  is  here  ﬁnding  opti-
+mal  portfolio with in efﬁcient portfolios alternatives with respect
+to  electricity generators’ risk aversion characteristic. To ﬁnd the
+optimal  portfolio,  utility  function  as  mentioned  before  in  Eq.  (7)  is
+used  and  optimization  equation  set  is  given  by  as  follows:
+Max XnU  =  E(rp)  −1
+2A/ESC2
+p (26)
+s.t.
+24/summationdisplay
+n=1Xn=  1
+Xn≤  /DC2n,  [n  =  1,  2,  .  .  .  ,  24]
+0  ≤  Xn,  ∀Xn∈  [n  =  1,  2,  .  .  .  ,  24]
+where
+E(rp)  =24/summationdisplay
+n=1Xn¯rn (27)
+/ESC2
+p=24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (28)
+To represent  average  risk-aversion  level  “A”  is  taken  as  “3”.  After
+solution  of  above  determined  equation  sets  it  is  reached  optimal
+weight percentages of risky assets in the optimum portfolio for an
+electricity generator that is taking into consideration of 24 riskyalternatives
+ in  spot  market  to  sell  electricity  with  /DC2nlimitation
+for  each  hour.  Reaching  to  minimum  global  variance  portfolio  it
+is  also  necessary  solution  of  Eq.  (21).  After  solutions  of  all  equa-
+tions  placed  above  it  is  reached  results  graphic  as  shown  in  Fig.  5
+same  as  previous  case.
+4.2.3.  Mean-variance  optimization  with  one  risk-free  asset
+This case  includes  24  risky  assets  and  additional  one  risk-free
+asset  for  electricity  generators.  Bilateral  contracts  under  guarantee
+of clearing  authorities  assumed  as  risk-free  assets  with  their  ﬁxed
+prices  for  a  ﬁxed  period  of  time.  There  are  no  limitations  for  elec-
+tricity  generators  to  sell  their  electricity  in  risky  spot  market  hours
+or  via  bilateral  contracts.  That  means  it  is  constructed  and  used
+optimization  model  with  one  risk-free  and  24  risky  selling  alterna-
+tive.  It  is  called  as  mean-variance  optimization  with  one  risk-free
+asset  approach  and  related  equation  sets  are  formed  as  follows:
+Min.(/ESC2
+p)  =24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (29)
+s.t.
+rc=24/summationdisplay
+n=1Xn¯rn+  Xrfrf=  re (30)
+24/summationdisplay
+n=1Xn+  Xrf=  1  (31)
+0 ≤  Xrf≤  1
+0 ≤  Xn≤  1,  ∀Xn∈  [n  =  1,  2,  .  .  .  ,  24]
+By
+ solution of these equation sets for every expected rate of
+return  it  is  obtained  efﬁcient  portfolios  and  efﬁcient  frontier.  Eq.
+(31)  shows  total  weight  percentage  of  portfolio  assets  including
+risk-free  asset  and  this  value  cannot  exceed  1.  There  are  no  limita-
+tions for electricity generators like in case a but in this case extra
+one  risk  free  asset  (bilateral  contract  option)  for  electricity  gener-
+ators.  To  prevent  from  risk,  more  risk  averse  generators  can  prefer
+selling  their  generations  into  bilateral  market  instead  of  spot  mar-
+ket. To ﬁnd the optimal selling portfolio for electricity generators
+with  average  risk-aversion,  value  of  “A”  is  taken  3  again  and  Eq.  (7)
+is  used  for  utility  function  (U)  and  the  optimization  constraints  as
+follows:
+Max Xn,XrfU  =  E(rc)  −1
+2A/ESC2
+c (32)
+s.t.
+24/summationdisplay
+n=1Xn+  Xrf=  1
+0 ≤  Xn≤  1,  ∀Xn∈  [n  =  1,  2,  .  .  .  ,  24]
+0 ≤  Xrf≤  1
+where
+E(rc)  =  Xrfrf+  (1  −  Xrf)E(rp)  (33)
+/ESC2
+c=  (1  −  Xrf)2/ESC2
+p (34)
+E(rp)  =24/summationdisplay
+n=1Xn¯rn (35)364 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+Table 3
+Risky
+ assets  for  hydraulic  power  plants.
+H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)  H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)
+1 891.68  239.52  13  982.25  275.93
+2 768.03
+ 300.31  14 997.67  277.90
+3 624.91 328.41  15  1019.46  309.23
+4 518.24  324.42  16  995.17  302.51
+5 472.82
+ 308.34  17  987.67  288.57
+6 451.67  291.21  18  971.91  357.12
+7
+ 412.64  302.78  19  932.62  315.31
+8
+ 598.28  366.44  20  917.25  319.01
+9 865.04
+ 342.74  21 929.85 310.05
+10 962.99  291.16  22  912.71  322.65
+11 1011.41
+ 262.98  23  970.53  195.29
+12
+ 1044.88  275.02  24  930.89  220.  84
+Table  4
+Risky
+ assets for lignite ﬁred thermal power plants.
+H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)  H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)
+1 15.50 27.90  13  26.05  32.14
+2 1.10  34.98  14  27.85  32.37
+3
+ −15.57  38.25  15  30.38  36.02
+4
+ −27.99  37.79  16  27.55  35.23
+5
+ −33.28  35.91  17  26.68  33.61
+6 −35.75 33.92 18 24.85 41.59
+7  −40.29  35.26  19  20.27  36.72
+8 −18.67
+ 42.68  20  18.48  37.16
+9 12.40  39.92  21  19.95  36.11
+10 23.81  33.91  22  17.95  37.58
+11 29.45 30.63 23 24.69 22.75
+12  33.34  32.03  24  20.07  25.72
+Table  5
+Risky
+ assets for natural gas combined power plants.
+H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)  H  Expected  rate  of  return ¯rn(%)  Standard  deviation  /ESCn(%)
+1  −4.48  23.00  13  3.92  26.50
+2
+ −16.65  28.84  14  5.40  26.69
+3 −30.39
+ 31.54  15  7.49  29.69
+4 −40.63  31.15  16  5.16  29.05
+5 −45.00  29.61  17  4.44  27.71
+6 −47.03 27.96 18 2.93 34.29
+7 −50.77  29.07  19  −0.84  30.28
+8 −32.95
+ 35.19  20  −2.32  30.63
+9 −7.33  32.91  21  −1.11  29.77
+10
+ 2.07  27.96  22  −2.76  30.98
+11
+ 6.72  25.25  23  2.80  18.75
+12
+ 9.93  26.41  24  −1.01  21.21
+/ESC2
+p=24/summationdisplay
+i=124/summationdisplay
+j=1XiXj/ESCij (36)
+where Xrfis  the  weight  percentage  for  risk-free  asset  (bilateral  con-
+tract),  E(rc)  is  the  expected  rate  of  return  for  mixed  portfolio  which
+constitutes  of  risky  and  risk-free  assets,  and  /ESC2
+cis  the  variance  of
+mixed  portfolio.
+By  solution  of  above  equation  sets  it  can  be  obtained  weight
+percentages  of  optimal  portfolio  in  a  risky  and  risk-free  market
+environment.  To represent average risk-aversion level, “A” is taken
+as  3  again.  Reaching  to  minimum  global  variance  portfolio  it  is  also
+necessary  solution  of  Eq.  (21).  After  solutions  of  all  Eqs.  (29)–(36)  it
+is  reached  results  graphic  as  shown  in  Fig.  5  same  as  previous  cases.
+5. Results
+All  cases  which  have  been  determined  in  previous  sections
+are  applied  to  three  speciﬁc  examples;  Hydraulic  Power  Plants
+with  CH=  0.99  cent/kWh,  Lignite  Fired  Thermal  Power  Plants  with
+CT=  8.50  cent/kWh,  and  Natural  Gas  Combined  Cycle  Power  Plantswith CN=  10.31  cent/kWh.  They  have  been  calculated  means  and
+variances  of each hour for three special cases and shown in the
+following tables (Tables 3–5).
+In all cases while ﬁnding optimum portfolios, “A” is taken 3 for
+average risk aversion and 1000 for global minimum variance port-
+folios.  Actually  with  respect  to  Eq.  (16)  “A”  must  be  taken  inﬁnity
+to  ﬁnd  global  variance  portfolios  but  in  practice  this  is  not  appli-
+cable  situation  and  it  has  been  seen  some  error  propagations  had
+occurred  when  taken  “A”  with  high  values.  So  “A”  has  been  taken
+1000  to  ﬁnd  global  variance  portfolios.
+5.1. Efﬁcient frontier and optimum portfolio for hydraulic power
+plants
+Case a.  Standard  mean-variance  optimization:  there  are  24  risky
+assets  for  electricity  generators  and  no  limitation  for  selling  of  elec-
+tricity  in  spot  market’s  hours.  “OP”  represents  optimum  portfolio
+and “GMVP” represents global minimum variance portfolio in Fig. 6
+and  next  graphics.
+Case b. Mean-variance optimization model with upper invest-
+ment  constraints:  there  are  24  risky  assets  for  electricity  generatorsF.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368 365
+350. 00%450. 00%550. 00%650. 00%750. 00%850. 00%950. 00%1050 .00 %1150 .00 %
+4 3.5 3 2.5 2 1.5RateofReturn(rp)
+RiskpOP
+GMVP
+Fig. 6. Portfolio optimization for hydraulic power plants with 24 risky assets.
+500.00%600.00%700.00%800.00%900.00%1000.00%1100.00%
+4 3.5 3 2.5 2 1.5RateofReturn (rp)
+RiskpOP
+GMVP
+Fig.  7.  Portfolio  optimization  for  hydraulic  power  plants  with  24  risky  assets  and
+upper
+ investment  constraints.
+but  there  are  also  upper  limit  determined  for  electricity  trading  for
+each  hour.  When  this  limit  is  taken  as  12.63%  for  each  hour  it  has
+been  reached  results  in  Fig.  7.
+Case  c.  Mean-variance  optimization  model  with  one  risk-free
+asset:  in  this  case  beside  the  24  risky  assets  there  is  also  one  risk-
+free  asset  (bilateral  contract).  Rate  of  return  for  bilateral  contract  is
+assumed  as  750%  (8.415  cent/kWh ,  this  is  because  of  low  generation
+costs  of  hydraulic  power  plants )  (Fig.  8).
+5.2.  Efﬁcient frontier and optimum portfolio for lignite ﬁred
+thermal  power plants
+Case  a.  Standard  mean-variance  optimization:  there  are  24  risky
+assets  for  electricity  generators  and  no  limitation  for  selling  of  elec-
+tricity  in spot market’s hours (Fig. 9).
+400.00 %500.00 %600.00 %700.00 %800.00 %900.00 %100 0.00 %1100 .00 %
+43.532.521.510.50RateofReturn (rp)
+Risk pOP
+GMVP
+Fig. 8. Portfolio optimization for hydraulic power plants with 24 risky and one risk-
+free
+ asset.-50 .00 %-40 .00 %-30 .00 %-20 .00 %-10 .00 %0.00 %10.00%20.00%30.00%40.00%
+0.6 0.5 0.4 0.3 0.2 0.1 0RateofReturn(rp)
+RiskpOP
+GMVP
+Fig.  9.  Portfolio  optimization  for  lignite  ﬁred  thermal  power  plants  with  24  risky
+assets.
+-30.00%-20.00%-10.00%0.00%10.00 %20.00 %30.00 %
+0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5RateofReturn (rp)
+Risk (σp)OP
+GMVP
+Fig.  10.  Portfolio  optimization  for  lignite  ﬁred  thermal  power  plants  with  24  risky
+assets
+ and  upper  investment  constraints.
+Case  b.  Mean-variance  optimization  model  with  upper  invest-
+ment  constraints: There are 24 risky assets for electricity generators
+but there  is  also  upper  limit  (12.63%)  determined  for  electricity
+trading  for  each  hour  (Fig.  10).
+Case  c. Mean-variance optimization model with one risk-free
+asset:  In  this  case  beside  the  24  risky  assets  there  is  also  one  risk-
+free  asset  (bilateral  contract).  Rate  of  return  for  bilateral  contract
+is  assumed  as  8%  (9.18  cent/kWh,  because  of  high  generation  costs )
+(Fig.  11).
+-30.00 %-20.00 %-10.00 %0.00 %10.00%20.00%30.00%
+0 0.1 0.2 0.3 0.4 0.5RateofReturn(rp)
+Risk (σp)OP
+GMVP
+Fig.  11.  Portfolio  optimization  for  lignite  ﬁred  thermal  power  plants  with  24  risky
+and
+ one risk-free asset.366 F.  Gökgöz,  M.E.  Atmaca  /  Renewable  and  Sustainable  Energy  Reviews  16 (2012) 357–  368
+-60 .00 %-50 .00 %-40 .00 %-30 .00 %-20 .00 %-10 .00 %0.00 %10.00%20.00%
+0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5RateofReturn (rp)
+Risk (σp)OP
+GMVP
+Fig.  12.  Portfolio  optimization  for  natural  gas  combined  cycle  power  plants  with  24
+risky
+ assets.
+-50.00%-40.00%-30.00%-20.00%-10.00%0.00%10.00 %
+0.15 0.2 0.25 0.3 0.35 0.4RateofReturn (rp)
+Risk (σp)OP
+GMVP
+Fig.  13.  Portfolio  optimization  for  natural  gas  combined  cycle  power  plants  with  24
+risky
+ assets  and  upper  investment  constraints.
+5.3. Efﬁcient frontier and optimum portfolio for natural gas
+combined cycle  power  plants
+Case  a.  Standard  mea
